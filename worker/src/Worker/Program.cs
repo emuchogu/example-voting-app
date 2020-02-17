@@ -19,7 +19,7 @@ namespace Worker
                 var pgsql = OpenDbConnection("Server=db;Database=postgres;Username=postgres_user;Password=postgres_password;Port=5432");
                 Console.Error.WriteLine("About to open OpenRedisConnection----- 1");
                 
-                var redisConn = OpenRedisConnection("redis,password=redis_password");
+                var redisConn = OpenRedisConnection("redis");
                 
                 Console.Error.WriteLine("About to open OpenRedisConnection----- 2");
                 
@@ -42,7 +42,7 @@ namespace Worker
                     // Reconnect redis if down
                     if (redisConn == null || !redisConn.IsConnected) {
                         Console.WriteLine("Reconnecting Redis");
-                        redisConn = OpenRedisConnection("redis,password=redis_password");
+                        redisConn = OpenRedisConnection("redis");
                         redis = redisConn.GetDatabase();
                     }
                     string json = redis.ListLeftPopAsync("votes").Result;
