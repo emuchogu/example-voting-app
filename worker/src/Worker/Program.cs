@@ -132,7 +132,12 @@ namespace Worker
 
         private static void UpdateVote(NpgsqlConnection connection, string voterId, string vote)
         {
+            Console.Error.WriteLine("In UpdateVote --- 1");
+            
             var command = connection.CreateCommand();
+            
+            Console.Error.WriteLine("In UpdateVote --- 2");
+            
             try
             {
                 command.CommandText = "INSERT INTO votes (id, vote) VALUES (@id, @vote)";
