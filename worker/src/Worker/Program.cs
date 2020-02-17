@@ -91,8 +91,12 @@ namespace Worker
             }
 
             Console.Error.WriteLine("Connected to db");
-
+            Console.Error.WriteLine("About to create command --- 1");
+            
             var command = connection.CreateCommand();
+            
+            Console.Error.WriteLine("About to create command --- 2");
+            
             command.CommandText = @"CREATE TABLE IF NOT EXISTS votes (
                                         id VARCHAR(255) NOT NULL UNIQUE,
                                         vote VARCHAR(255) NOT NULL
