@@ -16,7 +16,7 @@ namespace Worker
         {
             try
             {
-                var pgsql = OpenDbConnection("Server=db;Username=postgres_user;Password=postgres_password;");
+                var pgsql = OpenDbConnection("Server=db;Username=postgres_user;Password=postgres_password;Database=postgres");
                 var redisConn = OpenRedisConnection("redis,password=redis_password");
                 var redis = redisConn.GetDatabase();
 
@@ -46,7 +46,7 @@ namespace Worker
                         if (!pgsql.State.Equals(System.Data.ConnectionState.Open))
                         {
                             Console.WriteLine("Reconnecting DB");
-                            pgsql = OpenDbConnection("Server=db;Username=postgres_user;Password=postgres_password;");
+                            pgsql = OpenDbConnection("Server=db;Username=postgres_user;Password=postgres_password;Database=postgres");
                         }
                         else
                         { // Normal +1 vote requested
@@ -80,12 +80,12 @@ namespace Worker
                 }
                 catch (SocketException)
                 {
-                    Console.Error.WriteLine("Waiting for db");
+                    Console.Error.WriteLine("Waiting for db -- 1");
                     Thread.Sleep(1000);
                 }
                 catch (DbException)
                 {
-                    Console.Error.WriteLine("Waiting for db");
+                    Console.Error.WriteLine("Waiting for db -- 2");
                     Thread.Sleep(1000);
                 }
             }
