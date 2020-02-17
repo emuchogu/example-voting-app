@@ -21,11 +21,11 @@ namespace Worker
                 
                 var redisConn = OpenRedisConnection("redis,password=redis_password");
                 
-                Console.Error.WriteLine("About to open OpenRedisConnection----- 2);
+                Console.Error.WriteLine("About to open OpenRedisConnection----- 2");
                 
                 var redis = redisConn.GetDatabase();
 
-                Console.Error.WriteLine("About to open OpenRedisConnection----- 3);
+                Console.Error.WriteLine("About to open OpenRedisConnection----- 3");
                                         
                                         
                 // Keep alive is not implemented in Npgsql yet. This workaround was recommended:
