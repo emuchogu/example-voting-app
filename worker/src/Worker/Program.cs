@@ -17,9 +17,17 @@ namespace Worker
             try
             {
                 var pgsql = OpenDbConnection("Server=db;Database=postgres;Username=postgres_user;Password=postgres_password;Port=5432");
+                Console.Error.WriteLine("About to open OpenRedisConnection----- 1");
+                
                 var redisConn = OpenRedisConnection("redis,password=redis_password");
+                
+                Console.Error.WriteLine("About to open OpenRedisConnection----- 2);
+                
                 var redis = redisConn.GetDatabase();
 
+                Console.Error.WriteLine("About to open OpenRedisConnection----- 3);
+                                        
+                                        
                 // Keep alive is not implemented in Npgsql yet. This workaround was recommended:
                 // https://github.com/npgsql/npgsql/issues/1214#issuecomment-235828359
                 var keepAliveCommand = pgsql.CreateCommand();
